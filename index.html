@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ימי הולדת משפחת יהודית ואליסף רמות</title>
+    <title>ימי הולדת משפחת אחיקם רמות לנדסברג</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,9 +13,10 @@
             font-size: 16px;
         }
         h1 {
-            color: #1976d2; /* שינוי הצבע לכחול */
+            color: #1976d2;
             text-align: center;
             font-size: 24px;
+            font-weight: bold;
         }
         .content-wrapper {
             max-width: 600px;
@@ -36,10 +37,9 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        .search-inputs, #idInput, #hebrewMonthSelect, #gregMonthSelect, #houseSelect {
-            width: calc(50% - 12px);
+        .search-inputs, #idInput, #hebrewMonthSelect, #gregMonthSelect, #houseSelect, #upcomingSelect {
             padding: 12px;
-            margin-bottom: 8px; /* צמצום המרווח בין התיבות */
+            margin-bottom: 8px;
             margin-right: 12px;
             box-sizing: border-box;
             border: 1px solid #ddd;
@@ -49,8 +49,8 @@
         #searchInput {
             width: calc(100% - 24px);
         }
-        #houseSelect, #idInput {
-            width: calc(90% - 12px); /* התאמת הרוחב לנוחות */
+        #houseSelect, #idInput, #upcomingSelect {
+            width: calc(100% - 24px);
         }
         .search-inputs {
             background-color: #e0f7fa;
@@ -66,23 +66,20 @@
         }
         .search-label {
             display: block;
-            margin-bottom: 4px; /* צמצום המרווח מתחת לכותרת */
+            margin-bottom: 4px;
             font-weight: bold;
         }
-        .background-eliyassaf { background-color: #ffe6e6; }
-        .background-horovitz { background-color: #e6ffe6; }
-        .background-david { background-color: #e6e6ff; }
-        .background-yishai { background-color: #ffffe6; }
-        .background-matanya { background-color: #ffe6ff; }
-        .background-daniel { background-color: #e6ffff; }
-        .background-amiti { background-color: #e0f7fa; }
+        .background-achikam { background-color: #ffe6e6; }
+        .background-kaufman { background-color: #e6ffe6; }
+        .background-ben_shahal { background-color: #e6e6ff; }
+        .background-yotam { background-color: #ffffe6; }
         #ageOutput {
             background-color: #fff3e0;
             padding: 10px;
             border-radius: 4px;
             margin-top: 10px;
         }
-        .reset-btn {
+        .reset-btn, .upcoming-btn {
             width: 100%;
             padding: 12px;
             margin-bottom: 8px;
@@ -90,9 +87,15 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 16px;
+            cursor: pointer;
+        }
+        .reset-btn {
             background-color: #f44336;
             color: #fff;
-            cursor: pointer;
+        }
+        .upcoming-btn {
+            background-color: #1976d2;
+            color: #fff;
         }
         .id-link {
             color: #1976d2;
@@ -100,33 +103,60 @@
             cursor: pointer;
         }
         #currentDate {
-            margin-bottom: 8px; /* צמצום המקום שתופס התאריך */
+            margin-bottom: 8px;
             text-align: center;
             font-size: 14px;
+        }
+        .hebrew-birthday {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .greg-birthday {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .upcoming-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .upcoming-container label, .upcoming-container select, .upcoming-container button {
+            margin-top: 8px;
+        }
+        .upcoming-container select {
+            background-color: #1976d2;
+            color: #fff;
+            width: calc(60% - 12px); /* התאמת רוחב תיבת החיפוש */
+        }
+        .upcoming-container button {
+            width: calc(40% - 12px); /* התאמת רוחב כפתור החיפוש */
         }
     </style>
 </head>
 <body>
     <div class="content-wrapper">
-        <h1>משפחת יהודית ואליסף רמות</h1>
+        <h1>משפחת אחיקם רמות לנדסברג</h1>
         <div id="currentDate"></div>
         
         <div>
             <label class="search-label" for="searchInput">חיפוש:</label>
             <input type="text" id="searchInput" class="search-inputs" placeholder="חפש שם, תאריך, חודש או בית אב...">
         </div>
-        <div style="display: flex; justify-content: space-between;">
+        <div class="search-container">
             <div>
                 <label class="search-label" for="houseSelect">חיפוש לפי בית אב:</label>
                 <select id="houseSelect" class="search-inputs">
                     <option value="">בחר בית אב...</option>
-                    <option value="אליסף">אליסף</option>
-                    <option value="הורוביץ">הורוביץ</option>
-                    <option value="דוד">דוד</option>
-                    <option value="ישי">ישי</option>
-                    <option value="מתניה">מתניה</option>
-                    <option value="דניאל">דניאל</option>
-                    <option value="אמיתי">אמיתי</option>
+                    <option value="אחיקם">אחיקם</option>
+                    <option value="קאופמן">קאופמן</option>
+                    <option value="בן שהל">בן שהל</option>
+                    <option value="יותם">יותם</option>
                 </select>
             </div>
             <div>
@@ -135,10 +165,10 @@
             </div>
         </div>
         
-        <div style="display: flex; justify-content: space-between;">
-            <div>
+        <div class="search-container">
+            <div style="width: calc(50% - 12px);">
                 <label class="search-label" for="hebrewMonthSelect">יום הולדת לפי חודש עברי:</label>
-                <select id="hebrewMonthSelect" class="search-inputs">
+                <select id="hebrewMonthSelect" class="search-inputs" style="width: 100%;">
                     <option value="">בחר חודש עברי...</option>
                     <option value="תשרי">תשרי</option>
                     <option value="חשוון">חשוון</option>
@@ -154,9 +184,9 @@
                     <option value="אלול">אלול</option>
                 </select>
             </div>
-            <div>
+            <div style="width: calc(50% - 12px);">
                 <label class="search-label" for="gregMonthSelect">יום הולדת לפי חודש לועזי:</label>
-                <select id="gregMonthSelect" class="search-inputs">
+                <select id="gregMonthSelect" class="search-inputs" style="width: 100%;">
                     <option value="">בחר חודש לועזי...</option>
                     <option value="01">ינואר</option>
                     <option value="02">פברואר</option>
@@ -174,6 +204,22 @@
             </div>
         </div>
         
+        <div class="upcoming-container">
+            <div style="width: calc(60% - 12px);">
+                <label class="search-label" for="upcomingSelect">הצג ימי הולדת קרובים:</label>
+                <select id="upcomingSelect" class="search-inputs" style="width: 100%;">
+                    <option value="today">היום</option>
+                    <option value="7">7 ימים</option>
+                    <option value="30">30 ימים</option>
+                    <option value="60">60 ימים</option>
+                    <option value="90">90 ימים</option>
+                </select>
+            </div>
+            <div style="width: calc(40% - 12px);">
+                <button class="upcoming-btn" onclick="showUpcomingBirthdays()" style="width: 100%;">להצגת ימי הולדת לחץ כאן</button>
+            </div>
+        </div>
+
         <button class="reset-btn" onclick="resetSearch()">נקה חיפוש</button>
         <p id="ageOutput"></p>
 
@@ -199,50 +245,41 @@
 
     <script>
     const familyData = [
-        {id: 300, firstName: "<b>אליסף</b>", lastName: "<b>רמות</b>", parents: "שמעון ושושנה", hebrewBirthDate: "ד' אלול תשי\"י", gregBirthDate: "10/09/1954", house: "אליסף"},
-        {id: 301, firstName: "<b>יהודית</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ז' טבת תשי\"ט", gregBirthDate: "10/12/1957", house: "אליסף"},
-        {id: 302, firstName: "<b>רוני</b>", lastName: "<b>הורוביץ</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ה' אלול תשל\"ח", gregBirthDate: "27/09/1978", house: "הורוביץ"},
-        {id: 303, firstName: "<b>מאיר</b>", lastName: "<b>הורוביץ</b>", parents: "-", hebrewBirthDate: "ג' תשרי תשל\"ט", gregBirthDate: "25/09/1978", house: "הורוביץ"},
-        {id: 304, firstName: "מוריה", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ד' אב תשס\"ו", gregBirthDate: "07/08/2006", house: "הורוביץ"},
-        {id: 305, firstName: "אורי", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ה' כסלו תשס\"ח", gregBirthDate: "14/11/2007", house: "הורוביץ"},
-        {id: 306, firstName: "אלעד", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ט' תמוז תשס\"ט", gregBirthDate: "28/06/2009", house: "הורוביץ"},
-        {id: 307, firstName: "הדס", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ב' שבט תשע\"ב", gregBirthDate: "27/01/2012", house: "הורוביץ"},
-        {id: 308, firstName: "נועה", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ד' תשרי תשע\"ו", gregBirthDate: "18/10/2014", house: "הורוביץ"},
-        {id: 309, firstName: "איתמר", lastName: "הורוביץ", parents: "מאיר ורוני", hebrewBirthDate: "ו' ניסן תשע\"ו", gregBirthDate: "28/04/2016", house: "הורוביץ"},
-        {id: 310, firstName: "<b>דוד</b>", lastName: "<b>רמות</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ז' תשרי התשמ\"ב", gregBirthDate: "04/10/1982", house: "דוד"},
-        {id: 311, firstName: "<b>עדי</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ב' חשון התשמ\"ה", gregBirthDate: "03/11/1984", house: "דוד"},
-        {id: 312, firstName: "יהונתן", lastName: "רמות", parents: "דוד ועדי", hebrewBirthDate: "ח' כסלו התשע\"י", gregBirthDate: "09/12/2014", house: "דוד"},
-        {id: 313, firstName: "אלה", lastName: "רמות", parents: "דוד ועדי", hebrewBirthDate: "ט' אדר ב' התשע\"ט", gregBirthDate: "19/03/2019", house: "דוד"},
-        {id: 314, firstName: "<b>ישי</b>", lastName: "<b>רמות</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ד' טבת התשמ\"ה", gregBirthDate: "17/01/1985", house: "ישי"},
-        {id: 315, firstName: "<b>ציפי</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ג' כסלו התשמ\"ה", gregBirthDate: "07/12/1984", house: "ישי"},
-        {id: 316, firstName: "שמעון", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ח' תשרי התשס\"ח", gregBirthDate: "29/09/2007", house: "ישי"},
-        {id: 317, firstName: "תהילה", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ד' תשרי התשס\"ט", gregBirthDate: "13/10/2008", house: "ישי"},
-        {id: 318, firstName: "רות", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ו' אייר התש\"כ", gregBirthDate: "10/05/2010", house: "ישי"},
-        {id: 319, firstName: "אהוד", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "א' אייר התשע\"ה", gregBirthDate: "27/04/2012", house: "ישי"},
-        {id: 320, firstName: "שירה", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ד' אב התשע\"ג", gregBirthDate: "30/07/2014", house: "ישי"},
-        {id: 321, firstName: "יוסף", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ח' חשון התשע\"ח", gregBirthDate: "21/10/2017", house: "ישי"},
-        {id: 322, firstName: "טוביה", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ט' שבט התשע\"י", gregBirthDate: "18/01/2019", house: "ישי"},
-        {id: 323, firstName: "רחל", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ח' אלול התשפ\"א", gregBirthDate: "05/09/2021", house: "ישי"},
-        {id: 324, firstName: "יעקב", lastName: "רמות", parents: "ישי וציפי", hebrewBirthDate: "ד' אדר התשפ\"ד", gregBirthDate: "21/02/2024", house: "ישי"},
-        {id: 325, firstName: "<b>מתניה</b>", lastName: "<b>רמות</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ג' כסלו התשמ\"ה", gregBirthDate: "15/12/1986", house: "מתניה"},
-        {id: 326, firstName: "<b>מירב</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ח' חשון התש\"י", gregBirthDate: "16/11/1989", house: "מתניה"},
-        {id: 327, firstName: "תהל", lastName: "רמות", parents: "מתניה ומירב", hebrewBirthDate: "א' אייר התשע\"ו", gregBirthDate: "10/05/2016", house: "מתניה"},
-        {id: 328, firstName: "נעם רפאל", lastName: "רמות", parents: "מתניה ומירב", hebrewBirthDate: "ח' תמוז התשע\"ז", gregBirthDate: "20/06/2018", house: "מתניה"},
-        {id: 329, firstName: "גפן", lastName: "רמות", parents: "מתניה ומירב", hebrewBirthDate: "ניסן התשפ\"א", gregBirthDate: "17/03/2021", house: "מתניה"},
-        {id: 330, firstName: "<b>דניאל</b>", lastName: "<b>רמות</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ג' תמוז התשנ\"ד", gregBirthDate: "22/06/1994", house: "דניאל"},
-        {id: 331, firstName: "<b>אופיר</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ח' חשון התשנ\"ז", gregBirthDate: "03/11/1997", house: "דניאל"},
-        {id: 332, firstName: "הלל", lastName: "רמות", parents: "דניאל ואופיר", hebrewBirthDate: "ט' חשון התשפ\"ה", gregBirthDate: "23/10/2023", house: "דניאל"},
-        {id: 333, firstName: "<b>רחלי</b>", lastName: "<b>אמיתי</b>", parents: "אליסף ויהודית", hebrewBirthDate: "ד' אלול התשפ\"א", gregBirthDate: "22/11/1995", house: "אמיתי"},
-        {id: 334, firstName: "<b>תומר</b>", lastName: "<b>אמיתי</b>", parents: "-", hebrewBirthDate: "ז' אדר התשנ\"ז", gregBirthDate: "10/02/1997", house: "אמיתי"},
-        {id: 335, firstName: "אורי נתן", lastName: "אמיתי", parents: "תומר ורחלי", hebrewBirthDate: "ב' אדר התשפ\"ב", gregBirthDate: "04/03/2022", house: "אמיתי"},
-        {id: 336, firstName: "נעמי", lastName: "אמיתי", parents: "תומר ורחלי", hebrewBirthDate: "ז' טבת התשפ\"ב", gregBirthDate: "29/12/2023", house: "אמיתי"}
+        {id: 400, firstName: "<b>אחיקם</b>", lastName: "<b>לנדסברג</b>", parents: "שמעון ושושנה", hebrewBirthDate: "ז' סיון תשי\"ח", gregBirthDate: "26/05/1958", house: "אחיקם"},
+        {id: 401, firstName: "<b>רונית</b>", lastName: "<b>רמות</b>", parents: "גניה ומנשה", hebrewBirthDate: "ב' תמוז תשכ\"י", gregBirthDate: "14/07/1962", house: "אחיקם"},
+        {id: 402, firstName: "<b>נעמה</b>", lastName: "<b>לנדסברג</b>", parents: "מרים משה", hebrewBirthDate: "ל' אייר תש\"כ", gregBirthDate: "01/06/1970", house: "אחיקם"},
+        {id: 403, firstName: "<b>שי</b>", lastName: "<b>אדלר</b>", parents: "אביבה ואליעזר", hebrewBirthDate: "ה' שבט תשמ\"י", gregBirthDate: "03/02/1985", house: "גיתית"},
+        {id: 404, firstName: "<b>גיתית</b>", lastName: "<b>אדלר</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ה' תמוז תשמ\"ה", gregBirthDate: "20/06/1985", house: "גיתית"},
+        {id: 405, firstName: "דגן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ד' חשוון תש\"ף", gregBirthDate: "29/10/2013", house: "גיתית"},
+        {id: 406, firstName: "אסיף", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ו' תשרי תשע\"ט", gregBirthDate: "29/09/2015", house: "גיתית"},
+        {id: 407, firstName: "כרם", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ח' כסלו תשע\"ז", gregBirthDate: "21/11/2017", house: "גיתית"},
+        {id: 408, firstName: "ניצן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "פ' חשוון תש\"ף", gregBirthDate: "08/11/2019", house: "גיתית"},
+        {id: 409, firstName: "<b>אסף</b>", lastName: "<b>קאופמן</b>", parents: "-", hebrewBirthDate: "ה' אלול תשמ\"ה", gregBirthDate: "21/08/1985", house: "קאופמן"},
+        {id: 410, firstName: "<b>חרות</b>", lastName: "<b>קאופמן</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ז' ניסן תשמ\"ט", gregBirthDate: "15/04/1987", house: "קאופמן"},
+        {id: 411, firstName: "שיראל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ב' תשרי תש\"ף", gregBirthDate: "21/10/2011", house: "קאופמן"},
+        {id: 412, firstName: "מוריה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ג' כסלו תשע\"ד", gregBirthDate: "09/11/2013", house: "קאופמן"},
+        {id: 413, firstName: "הלל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ו' טבת תשע\"ו", gregBirthDate: "09/01/2016", house: "קאופמן"},
+        {id: 414, firstName: "נווה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ט' תשרי תשע\"ט", gregBirthDate: "18/09/2018", house: "קאופמן"},
+        {id: 415, firstName: "אמונה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "א' כסלו תשפ\"א", gregBirthDate: "26/11/2020", house: "קאופמן"},
+        {id: 416, firstName: "בניה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ג' אב תשפ\"ג", gregBirthDate: "24/07/2023", house: "קאופמן"},
+        {id: 417, firstName: "<b>נטע</b>", lastName: "<b>בן שהל</b>", parents: "אחיקם ורונית", hebrewBirthDate: "א' שבט תשנ\"ט", gregBirthDate: "31/01/1991", house: "בן שהל"},
+        {id: 418, firstName: "<b>אהרון</b>", lastName: "<b>בן שהל</b>", parents: "-", hebrewBirthDate: "ו' אלול תשמ\"ו", gregBirthDate: "27/09/1986", house: "בן שהל"},
+        {id: 419, firstName: "אילה אורה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "ח' סיון תשפ\"א", gregBirthDate: "17/06/2022", house: "בן שהל"},
+        {id: 420, firstName: "תמר שושנה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "ד' סיון תשפ\"ג", gregBirthDate: "08/06/2024", house: "בן שהל"},
+        {id: 421, firstName: "<b>יותם</b>", lastName: "<b>רמות</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ז' אדר תשנ\"ז", gregBirthDate: "13/02/1997", house: "יותם"},
+        {id: 422, firstName: "<b>מעיין</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ז' אדר תשנ\"ט", gregBirthDate: "05/03/1997", house: "יותם"},
+        {id: 423, firstName: "גוני", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ב' תמוז תשפ\"ב", gregBirthDate: "22/07/2022", house: "יותם"},
+        {id: 424, firstName: "צורי", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ד' אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
+        {id: 425, firstName: "עוז", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ד' אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
+        {id: 426, firstName: "<b>אוהד</b>", lastName: "<b>רמות</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ט' חשוון תש\"ן", gregBirthDate: "29/10/1999", house: "אוהד"},
+        {id: 427, firstName: "יהל", lastName: "נוימאיר", parents: "רויטל וגדי", hebrewBirthDate: "י\"ט כסלו תשס\"א", gregBirthDate: "14/12/2000", house: "אוהד"}
     ];
 
     function populateTable() {
         const tableBody = document.getElementById('familyTableBody');
         familyData.forEach(person => {
             const row = tableBody.insertRow();
-            row.className = `background-${person.house.toLowerCase()}`;
+            row.className = `background-${person.house.toLowerCase().replace(" ", "_")}`;
             row.innerHTML = `
                 <td><a class="id-link" onclick="showDetails(${person.id})">${person.id}</a></td>
                 <td>${person.firstName}</td>
@@ -298,6 +335,7 @@
         document.getElementById('hebrewMonthSelect').value = '';
         document.getElementById('gregMonthSelect').value = '';
         document.getElementById('houseSelect').value = '';
+        document.getElementById('upcomingSelect').value = '7';
         document.getElementById('idInput').value = '';
         document.getElementById('ageOutput').innerHTML = '';
         searchTable();
@@ -336,12 +374,12 @@
                 מזהה ${idValue}:<br>
                 ${person.firstName} ${person.lastName}<br>
                 ההורים: <b>${person.parents}</b><br>
-                גיל: <span class="highlight">${age} שנים</span><br>
+                גיל: <span class="highlight">${age}</span><br>
                 תאריך לידה עברי: <span class="highlight-date">${person.hebrewBirthDate}</span><br>
                 תאריך לידה לועזי: <span class="highlight-date">${person.gregBirthDate}</span><br>
                 יום הולדת הבא בעוד <span class="highlight">${daysToNextBirthday} ימים</span><br>
                 בתאריך: <span class="highlight-date">${nextBirthdayStr} (${dayOfWeekHeb})</span><br>
-                גיל ביום ההולדת הקרוב: <span class="highlight">${age + 1} שנים</span>
+                גיל ביום ההולדת הקרוב: <span class="highlight">${age + 1}</span>
             `;
         } else {
             ageOutput.innerHTML = "לא נמצא אדם עם מזהה זה";
@@ -363,6 +401,59 @@
             year: 'numeric'
         }).format(now);
         document.getElementById('currentDate').innerHTML = `בס"ד<br>היום: ${hebrewDate}<br>תאריך לועזי: ${gregorianDate}`;
+    }
+
+    function showUpcomingBirthdays() {
+        const today = new Date();
+        const daysToShow = parseInt(document.getElementById('upcomingSelect').value);
+
+        const upcomingBirthdays = familyData.filter(person => {
+            const gregBirthDate = new Date(person.gregBirthDate.split("/").reverse().join("-"));
+            const nextBirthday = new Date(today.getFullYear(), gregBirthDate.getMonth(), gregBirthDate.getDate());
+            if (today > nextBirthday) {
+                nextBirthday.setFullYear(today.getFullYear() + 1);
+            }
+            const daysToNextBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+
+            return daysToNextBirthday <= daysToShow;
+        });
+
+        const sortedBirthdays = upcomingBirthdays.sort((a, b) => {
+            const aDate = new Date(a.gregBirthDate.split("/").reverse().join("-"));
+            const bDate = new Date(b.gregBirthDate.split("/").reverse().join("-"));
+            return aDate - bDate;
+        });
+
+        const ageOutput = document.getElementById("ageOutput");
+        ageOutput.innerHTML = `<b>ימי הולדת קרובים ב-${daysToShow} הימים הקרובים:</b><br>`;
+
+        if (sortedBirthdays.length === 0) {
+            ageOutput.innerHTML += "אין ימי הולדת במשפחה.";
+        } else {
+            sortedBirthdays.forEach(person => {
+                const birthDate = new Date(person.gregBirthDate.split("/").reverse().join("-"));
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                const nextGregorianBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+                if (today > nextGregorianBirthday) {
+                    nextGregorianBirthday.setFullYear(today.getFullYear() + 1);
+                }
+                const daysToNextGregorianBirthday = Math.ceil((nextGregorianBirthday - today) / (1000 * 60 * 60 * 24));
+
+                ageOutput.innerHTML += `
+                    <div class="${person.house.toLowerCase().replace(" ", "_")}">
+                        <b>${person.firstName} ${person.lastName}</b> - תאריך לועזי: <span class="greg-birthday">${person.gregBirthDate}</span>, 
+                        תאריך עברי: <span class="hebrew-birthday">${person.hebrewBirthDate}</span><br>
+                        גיל ביום ההולדת הקרוב: ${age + 1},<br>
+                        ימים ליום הולדת לועזי: ${daysToNextGregorianBirthday}
+                    </div>`;
+            });
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
