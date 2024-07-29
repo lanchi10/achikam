@@ -45,6 +45,8 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 16px;
+            background-color: #1976d2;
+            color: #fff;
         }
         #searchInput {
             width: calc(100% - 24px);
@@ -53,7 +55,7 @@
             width: calc(100% - 24px);
         }
         .search-inputs {
-            background-color: #e0f7fa;
+            background-color: #1976d2;
             border: 1px solid #00796b;
         }
         .highlight {
@@ -73,6 +75,8 @@
         .background-kaufman { background-color: #e6ffe6; }
         .background-ben_shahal { background-color: #e6e6ff; }
         .background-yotam { background-color: #ffffe6; }
+        .background-gitit { background-color: #ffe6cc; }
+        .background-ohad { background-color: #e6f2ff; }
         #ageOutput {
             background-color: #fff3e0;
             padding: 10px;
@@ -154,9 +158,11 @@
                 <select id="houseSelect" class="search-inputs">
                     <option value="">בחר בית אב...</option>
                     <option value="אחיקם">אחיקם</option>
-                    <option value="קאופמן">קאופמן</option>
-                    <option value="בן שהל">בן שהל</option>
+                    <option value="גיתית">גיתית</option>
+                    <option value="חרות">חרות</option>
+                    <option value="נטע">נטע</option>
                     <option value="יותם">יותם</option>
+                    <option value="אוהד">אוהד</option>
                 </select>
             </div>
             <div>
@@ -245,34 +251,33 @@
 
     <script>
     const familyData = [
-        {id: 400, firstName: "<b>אחיקם</b>", lastName: "<b>לנדסברג</b>", parents: "שמעון ושושנה", hebrewBirthDate: "ז' סיון תשי\"ח", gregBirthDate: "26/05/1958", house: "אחיקם"},
-        {id: 401, firstName: "<b>רונית</b>", lastName: "<b>רמות</b>", parents: "גניה ומנשה", hebrewBirthDate: "ב' תמוז תשכ\"י", gregBirthDate: "14/07/1962", house: "אחיקם"},
-        {id: 402, firstName: "<b>נעמה</b>", lastName: "<b>לנדסברג</b>", parents: "מרים ומשה  ", hebrewBirthDate: "ל' אייר תש\"כ", gregBirthDate: "01/06/1970", house: "אחיקם"},
-        {id: 403, firstName: "<b>שי</b>", lastName: "<b>אדלר</b>", parents: "אביבה ואליעזר", hebrewBirthDate: "ה' שבט תשמ\"י", gregBirthDate: "03/02/1985", house: "גיתית"},
-        {id: 404, firstName: "<b>גיתית</b>", lastName: "<b>אדלר</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ה' תמוז תשמ\"ה", gregBirthDate: "20/06/1985", house: "גיתית"},
-        {id: 405, firstName: "דגן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ד' חשוון תש\"ף", gregBirthDate: "29/10/2013", house: "גיתית"},
-        {id: 406, firstName: "אסיף", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ו' תשרי תשע\"ט", gregBirthDate: "29/09/2015", house: "גיתית"},
-        {id: 407, firstName: "כרם", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ח' כסלו תשע\"ז", gregBirthDate: "21/11/2017", house: "גיתית"},
-        {id: 408, firstName: "ניצן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "פ' חשוון תש\"ף", gregBirthDate: "08/11/2019", house: "גיתית"},
-        {id: 409, firstName: "<b>אסף</b>", lastName: "<b>קאופמן</b>", parents: "-", hebrewBirthDate: "ה' אלול תשמ\"ה", gregBirthDate: "21/08/1985", house: "קאופמן"},
-        {id: 410, firstName: "<b>חרות</b>", lastName: "<b>קאופמן</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ז' ניסן תשמ\"ט", gregBirthDate: "15/04/1987", house: "קאופמן"},
-        {id: 411, firstName: "שיראל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ב' תשרי תש\"ף", gregBirthDate: "21/10/2011", house: "קאופמן"},
-        {id: 412, firstName: "מוריה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ג' כסלו תשע\"ד", gregBirthDate: "09/11/2013", house: "קאופמן"},
-        {id: 413, firstName: "הלל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ו' טבת תשע\"ו", gregBirthDate: "09/01/2016", house: "קאופמן"},
-        {id: 414, firstName: "נווה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ט' תשרי תשע\"ט", gregBirthDate: "18/09/2018", house: "קאופמן"},
-        {id: 415, firstName: "אמונה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "א' כסלו תשפ\"א", gregBirthDate: "26/11/2020", house: "קאופמן"},
-        {id: 416, firstName: "בניה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ג' אב תשפ\"ג", gregBirthDate: "24/07/2023", house: "קאופמן"},
-        {id: 417, firstName: "<b>נטע</b>", lastName: "<b>בן שהל</b>", parents: "אחיקם ורונית", hebrewBirthDate: "א' שבט תשנ\"ט", gregBirthDate: "31/01/1991", house: "בן שהל"},
-        {id: 418, firstName: "<b>אהרון</b>", lastName: "<b>בן שהל</b>", parents: "-", hebrewBirthDate: "ו' אלול תשמ\"ו", gregBirthDate: "27/09/1986", house: "בן שהל"},
-        {id: 419, firstName: "אילה אורה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "ח' סיון תשפ\"א", gregBirthDate: "17/06/2022", house: "בן שהל"},
-        {id: 420, firstName: "תמר שושנה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "ד' סיון תשפ\"ג", gregBirthDate: "08/06/2024", house: "בן שהל"},
-        {id: 421, firstName: "<b>יותם</b>", lastName: "<b>רמות</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ז' אדר תשנ\"ז", gregBirthDate: "13/02/1997", house: "יותם"},
-        {id: 422, firstName: "<b>מעיין</b>", lastName: "<b>רמות</b>", parents: "-", hebrewBirthDate: "ז' אדר תשנ\"ט", gregBirthDate: "05/03/1997", house: "יותם"},
-        {id: 423, firstName: "גוני", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ב' תמוז תשפ\"ב", gregBirthDate: "22/07/2022", house: "יותם"},
-        {id: 424, firstName: "צורי", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ד' אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
-        {id: 425, firstName: "עוז", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "ד' אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
-        {id: 426, firstName: "<b>אוהד</b>", lastName: "<b>רמות</b>", parents: "אחיקם ורונית", hebrewBirthDate: "ט' חשוון תש\"ן", gregBirthDate: "29/10/1999", house: "אוהד"},
-        {id: 427, firstName: "יהל", lastName: "נוימאיר", parents: "רויטל וגדי", hebrewBirthDate: "י\"ט כסלו תשס\"א", gregBirthDate: "14/12/2000", house: "אוהד"}
+        {id: 400, firstName: "אחיקם", lastName: "לנדסברג", parents: "שמעון ושושנה", hebrewBirthDate: "ז' סיון תשי\"ח", gregBirthDate: "26/05/1958", house: "אחיקם"},
+        {id: 401, firstName: "רונית", lastName: "רמות", parents: "גניה ומנשה", hebrewBirthDate: "ב' תמוז תשכ\"י", gregBirthDate: "14/07/1962", house: "אחיקם"},
+        {id: 402, firstName: "נעמה", lastName: "לנדסברג", parents: "מרים ומשה", hebrewBirthDate: "ל' אייר תש\"כ", gregBirthDate: "01/06/1970", house: "אחיקם"},
+        {id: 403, firstName: "שי", lastName: "אדלר", parents: "אביבה ואליעזר", hebrewBirthDate: "י\"ג שבט תשמ\"ה", gregBirthDate: "03/02/1985", house: "גיתית"},
+        {id: 404, firstName: "גיתית", lastName: "אדלר", parents: "אחיקם ורונית", hebrewBirthDate: "ג' תמוז תשמ\"ה", gregBirthDate: "21/06/1985", house: "גיתית"},
+        {id: 405, firstName: "דגן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "כ\"ה חשון תשע\"ד", gregBirthDate: "29/10/2013", house: "גיתית"},
+        {id: 406, firstName: "אסיף", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ט\"ז תשרי תשע\"ו", gregBirthDate: "29/09/2015", house: "גיתית"},
+        {id: 407, firstName: "כרם", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "ג' כסלו תשע\"ח", gregBirthDate: "20/11/2017", house: "גיתית"},
+        {id: 408, firstName: "ניצן", lastName: "אדלר", parents: "שי וגיתית", hebrewBirthDate: "י' חשון תש\"ף", gregBirthDate: "08/11/2019", house: "גיתית"},
+        {id: 409, firstName: "אסף", lastName: "קאופמן", parents: "משה ופנינה", hebrewBirthDate: "ד' אלול תשמ\"ה", gregBirthDate: "20/08/1985", house: "חרות"},
+        {id: 410, firstName: "חרות", lastName: "קאופמן", parents: "אחיקם ורונית", hebrewBirthDate: "ט\"ז ניסן תשמ\"ז", gregBirthDate: "15/04/1987", house: "חרות"},
+        {id: 411, firstName: "שיראל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "כ\"ג תשרי תשע\"ב", gregBirthDate: "20/10/2011", house: "חרות"},
+        {id: 412, firstName: "מוריה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ז' כסלו תשע\"ד", gregBirthDate: "10/11/2013", house: "חרות"},
+        {id: 413, firstName: "הלל", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "כ\"ח טבת תשע\"ו", gregBirthDate: "09/01/2016", house: "חרות"},
+        {id: 415, firstName: "אמונה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "י\"א כסלו תשפ\"א", gregBirthDate: "26/11/2020", house: "חרות"},
+        {id: 416, firstName: "בניה", lastName: "קאופמן", parents: "אסף וחרות", hebrewBirthDate: "ו' אב תשפ\"ג", gregBirthDate: "24/07/2023", house: "חרות"},
+        {id: 417, firstName: "נטע", lastName: "בן שהל", parents: "אחיקם ורונית", hebrewBirthDate: "ט\"ז שבט תשנ\"א", gregBirthDate: "30/01/1991", house: "נטע"},
+        {id: 418, firstName: "אהרון", lastName: "בן שהל", parents: "אברהם ואורה", hebrewBirthDate: "כ\"ג אלול תשמ\"ו", gregBirthDate: "27/09/1986", house: "נטע"},
+        {id: 419, firstName: "אילה אורה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "י\"ח סיון תשפ\"ב", gregBirthDate: "17/06/2022", house: "נטע"},
+        {id: 420, firstName: "תמר שושנה", lastName: "בן שהל", parents: "אהרון ונטע", hebrewBirthDate: "ב' סיון תשפ\"ד", gregBirthDate: "08/06/2024", house: "נטע"},
+        {id: 421, firstName: "יותם", lastName: "רמות", parents: "אחיקם ורונית", hebrewBirthDate: "ו' אדר א' תשנ\"ז", gregBirthDate: "13/02/1997", house: "יותם"},
+        {id: 422, firstName: "מעיין", lastName: "רמות", parents: "מישל וטליה", hebrewBirthDate: "כ\"ו אדר א' תשנ\"ז", gregBirthDate: "05/03/1997", house: "יותם"},
+        {id: 423, firstName: "גוני", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "כ\"ד תמוז", gregBirthDate: "22/07/2022", house: "יותם"},
+        {id: 424, firstName: "צורי", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "כ\"ט אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
+        {id: 425, firstName: "עוז", lastName: "רמות", parents: "יותם ומעיין", hebrewBirthDate: "כ\"ט אייר תשפ\"ד", gregBirthDate: "06/06/2024", house: "יותם"},
+        {id: 426, firstName: "אוהד", lastName: "רמות", parents: "אחיקם ורונית", hebrewBirthDate: "י\"ט חשוון תש\"ס", gregBirthDate: "29/10/1999", house: "אוהד"},
+        {id: 427, firstName: "יהל", lastName: "נוימאיר", parents: "רויטל וגדי", hebrewBirthDate: "י\"ז כסלו תשס\"א", gregBirthDate: "14/12/2000", house: "אוהד"}
     ];
 
     function populateTable() {
